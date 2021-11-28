@@ -44,7 +44,7 @@ class ProductsSection extends StatelessWidget {
           flex: 4,
           child: Column(
             children: [
-              SizedBox(height: 100,),
+              const SizedBox(height: 100,),
               const Text(
                 "منـــتجاتنا",
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
@@ -56,7 +56,7 @@ class ProductsSection extends StatelessWidget {
               ),
               Column(
                 children: [
-                  SizedBox(height: 100,),
+                  const SizedBox(height: 100,),
                   Wrap(
                     spacing: 100,
                     textDirection: TextDirection.rtl,

@@ -99,7 +99,7 @@ class WelcomeSection extends StatelessWidget {
                     ),
                   ),
                 ),
-                Spacer()
+                const Spacer()
               ],
             ),
           )
