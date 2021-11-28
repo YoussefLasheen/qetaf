@@ -36,7 +36,12 @@ class Indicator extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('logo.png'),
+                )
               ],
             ),
           ),

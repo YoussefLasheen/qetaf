@@ -37,8 +37,8 @@ class ContactSection extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                const Expanded(
-                  child: Placeholder(fallbackWidth: 50,),
+                Expanded(
+                  child: Image.asset('logo.png'),
                 ),
                 const Spacer(),
               ],
