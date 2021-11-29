@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qetaf/navigation/nav_bar.dart';
+import 'package:qetaf/widgets/Ordering%20System/Cart/cart.dart';
 import 'package:qetaf/widgets/contact_section.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -16,40 +17,45 @@ class HomePage extends StatelessWidget {
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
     return Material(
-      child: Column(
+      child: Stack(
         children: [
-          ValueListenableBuilder<Iterable<ItemPosition>>(
-              valueListenable: itemPositionsListener.itemPositions,
-              builder: (context, positions, child) {
-                int? max = 0;
-                if (positions.isNotEmpty) {
-                  max = positions.first.index;
-                }
-                return NavBar(
-                    currentIndex: max,
-                    onTap: (index) {
-                      itemScrollController.scrollTo(
-                          index: index,
-                          duration: const Duration(seconds: 1),
-                          curve: Curves.easeInOutCubic);
-                    });
-              }),
-          Expanded(
-            child: ScrollablePositionedList.builder(
-              itemPositionsListener: itemPositionsListener,
-              itemScrollController: itemScrollController,
-              shrinkWrap: true,
-              itemCount: items.length,
-              itemBuilder: (context, index) => items[index],
-            ),
+          Column(
+            children: [
+              ValueListenableBuilder<Iterable<ItemPosition>>(
+                  valueListenable: itemPositionsListener.itemPositions,
+                  builder: (context, positions, child) {
+                    int? max = 0;
+                    if (positions.isNotEmpty) {
+                      max = positions.first.index;
+                    }
+                    return NavBar(
+                        currentIndex: max,
+                        onTap: (index) {
+                          itemScrollController.scrollTo(
+                              index: index,
+                              duration: const Duration(seconds: 1),
+                              curve: Curves.easeInOutCubic);
+                        });
+                  }),
+              Expanded(
+                child: ScrollablePositionedList.builder(
+                  itemPositionsListener: itemPositionsListener,
+                  itemScrollController: itemScrollController,
+                  shrinkWrap: true,
+                  itemCount: items.length,
+                  itemBuilder: (context, index) => items[index],
+                ),
+              ),
+            ],
           ),
+          const Align(alignment: Alignment.bottomRight, child: Cart()),
         ],
       ),
     );
   }
 }
 
-List items = const[
+List items = const [
   WelcomeSection(),
   ProductsSection(),
   AboutusSection(),
