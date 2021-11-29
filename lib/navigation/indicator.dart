@@ -40,7 +40,7 @@ class Indicator extends StatelessWidget {
                   Spacer(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('logo.png'),
+                  child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/logo.png?alt=media&token=883440b9-bdb9-412e-a81f-c12cec2ae8da'),
                 )
               ],
             ),
