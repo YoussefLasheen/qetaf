@@ -52,10 +52,11 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
               child: Material(
                 color: Colors.transparent,
                 child: Container(
-                  width: 150,
+                  width: 250,
                   decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(20)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [BoxShadow(color: Colors.black,blurRadius: 1,)]),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -64,9 +65,12 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                           onTap: _toggleExpand,
                           child: Container(
                             child: _isExpanded
-                                ? const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Icon(Icons.arrow_circle_down_sharp),
+                                ? Align(
+                                    alignment: Alignment.topLeft,
+                                    child: const Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: Icon(Icons.close),
+                                    ),
                                   )
                                 : Row(
                                     children: const [
@@ -93,17 +97,45 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                                 height: 150,
                                 child: Text("Wow so empty"),
                               )),
-                              InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      PageRouteBuilder(
-                                          opaque: false,
-                                          pageBuilder: (_, __, ___) =>
-                                              const OrderDialog()),
-                                    );
-                                  },
-                                  child: const Text("Order")),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("35.5 EGP"),
+                                    SizedBox(width: 20,),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: TextButton(
+                                            style: TextButton.styleFrom(
+                                              padding: EdgeInsets.symmetric(vertical: 20),
+                                              elevation: 50,
+                                              backgroundColor: Colors.orange,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15)),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                PageRouteBuilder(
+                                                    opaque: false,
+                                                    pageBuilder: (_, __, ___) =>
+                                                        const OrderDialog()),
+                                              );
+                                            },
+                                            child: const Text(
+                                              "Order",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            )),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -133,7 +165,14 @@ class OrderDialog extends StatelessWidget {
           color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.grey, borderRadius: BorderRadius.circular(20)),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 10,
+                  )
+                ]),
             child: IconButton(
               icon: const Icon(Icons.exit_to_app),
               onPressed: () {
