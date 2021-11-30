@@ -56,7 +56,12 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: [BoxShadow(color: Colors.black,blurRadius: 1,)]),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          blurRadius: 1,
+                        )
+                      ]),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -103,13 +108,16 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text("35.5 EGP"),
-                                    SizedBox(width: 20,),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
                                     Expanded(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: TextButton(
                                             style: TextButton.styleFrom(
-                                              padding: EdgeInsets.symmetric(vertical: 20),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20),
                                               elevation: 50,
                                               backgroundColor: Colors.orange,
                                               shape: RoundedRectangleBorder(
