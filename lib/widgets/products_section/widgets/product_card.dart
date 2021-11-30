@@ -33,6 +33,12 @@ class ProductCard extends StatelessWidget {
           style: const TextStyle(
               fontWeight: FontWeight.w300, fontSize: 15, color: Colors.black38),
         ),
+        IconButton(
+          icon: Icon(Icons.shopping_cart),
+          onPressed:(){
+            cart.add(product);
+          },
+        )
       ],
     );
   }
