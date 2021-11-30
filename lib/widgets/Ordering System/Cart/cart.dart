@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+
+import 'models/cart_model.dart';
+import 'widgets/products_list.dart';
+import 'widgets/toggle_cart_button.dart';
 
 class Cart extends StatefulWidget {
   const Cart({
@@ -39,6 +44,7 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    CartModel cart = Provider.of<CartModel>(context);
     return AnimatedBuilder(
       animation: _controller.view,
       builder: (BuildContext context, Widget? child) {

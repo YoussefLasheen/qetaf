@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
 import 'package:qetaf/widgets/products_section/models/product.dart';
 
 class ProductCard extends StatelessWidget {
@@ -7,6 +9,7 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartModel cart = Provider.of<CartModel>(context);
     return Column(
       children: [
         const SizedBox(

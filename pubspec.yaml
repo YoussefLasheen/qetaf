@@ -37,6 +37,7 @@ dependencies:
   expand_widget: ^2.1.0
   google_fonts: ^2.1.0
   scrollable_positioned_list: ^0.2.3
+  provider: ^6.0.1
 
 dev_dependencies:
   flutter_test:
