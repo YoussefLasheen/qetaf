@@ -72,86 +72,17 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       ClipRect(
-                        child: InkWell(
-                          onTap: _toggleExpand,
-                          child: Container(
-                            child: _isExpanded
-                                ? Align(
-                                    alignment: Alignment.topLeft,
-                                    child: const Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Icon(Icons.close),
-                                    ),
-                                  )
-                                : Row(
-                                    children: const [
-                                      Padding(
-                                        padding: EdgeInsets.all(8.0),
-                                        child: Icon(Icons.shopping_cart),
-                                      ),
-                                      Center(child: Text("open")),
-                                    ],
-                                  ),
-                          ),
-                        ),
-                      ),
+                          child: ToggleCartButton(
+                        isExpanded: _isExpanded,
+                        toggleExpand: _toggleExpand,
+                      )),
                       ClipRect(
                         child: Align(
                           alignment: Alignment.topCenter,
                           heightFactor: _controller
                               .drive(CurveTween(curve: Curves.easeInOutCubic))
                               .value,
-                          child: Column(
-                            children: [
-                              const Center(
-                                  child: SizedBox(
-                                height: 150,
-                                child: Text("Wow so empty"),
-                              )),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("35.5 EGP"),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: TextButton(
-                                            style: TextButton.styleFrom(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 20),
-                                              elevation: 50,
-                                              backgroundColor: Colors.orange,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15)),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                PageRouteBuilder(
-                                                    opaque: false,
-                                                    pageBuilder: (_, __, ___) =>
-                                                        const OrderDialog()),
-                                              );
-                                            },
-                                            child: const Text(
-                                              "Order",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            )),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: ProductsList(cart: cart),
                         ),
                       ),
                     ],
@@ -162,40 +93,6 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
           ),
         );
       },
-    );
-  }
-}
-
-class OrderDialog extends StatelessWidget {
-  const OrderDialog({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Hero(
-      tag: 'tag',
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 200),
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                  )
-                ]),
-            child: IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
