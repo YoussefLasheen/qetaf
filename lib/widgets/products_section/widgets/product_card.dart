@@ -4,7 +4,7 @@ import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
 import 'package:qetaf/widgets/products_section/models/product.dart';
 
 class ProductCard extends StatelessWidget {
-  final Product product;
+  final ProductDetails product;
   const ProductCard({Key? key, required this.product}) : super(key: key);
 
   @override
