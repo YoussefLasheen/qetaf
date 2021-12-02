@@ -18,9 +18,7 @@ class HomePage extends StatelessWidget {
     final ItemScrollController itemScrollController = ItemScrollController();
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
-    return ChangeNotifierProvider(
-      create: (_)=> CartModel(products: []),
-      child: Material(
+    return Material(
         child: Stack(
           children: [
             Column(
@@ -55,7 +53,6 @@ class HomePage extends StatelessWidget {
             const Align(alignment: Alignment.bottomRight, child: Cart()),
           ],
         ),
-      ),
     );
   }
 }
