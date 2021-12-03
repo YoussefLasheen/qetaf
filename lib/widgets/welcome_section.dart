@@ -22,9 +22,6 @@ class WelcomeSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-            child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/welcome_section_1.png?alt=media&token=2b3b4d6f-9a04-4a89-8009-a56b1b81e6a1'),
-          ),
-          Expanded(
             child: Column(
               children: [
                 const Spacer(),
@@ -95,7 +92,10 @@ class WelcomeSection extends StatelessWidget {
                 const Spacer()
               ],
             ),
-          )
+          ),
+          Expanded(
+            child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/welcome_section_1.png?alt=media&token=2b3b4d6f-9a04-4a89-8009-a56b1b81e6a1'),
+          ),
         ],
       ),
     );

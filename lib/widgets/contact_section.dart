@@ -17,12 +17,7 @@ class ContactSection extends StatelessWidget {
               children: [
                 const Spacer(),
                 Expanded(
-                  child: Column(
-                    children: const [
-                      Text('01012546889',style: TextStyle(color: Colors.white),),
-                      Text('10151584135',style: TextStyle(color: Colors.white),),
-                    ],
-                  ),
+                  child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/logo.png?alt=media&token=883440b9-bdb9-412e-a81f-c12cec2ae8da'),
                 ),
                 const Spacer(),
                 Expanded(
@@ -37,8 +32,14 @@ class ContactSection extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
+                
                 Expanded(
-                  child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/logo.png?alt=media&token=883440b9-bdb9-412e-a81f-c12cec2ae8da'),
+                  child: Column(
+                    children: const [
+                      Text('01012546889',style: TextStyle(color: Colors.white),),
+                      Text('10151584135',style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
                 ),
                 const Spacer(),
               ],
