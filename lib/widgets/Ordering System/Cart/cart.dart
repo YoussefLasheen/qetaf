@@ -59,7 +59,7 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
               child: Material(
                 color: Colors.transparent,
                 child: Container(
-                  width: 250,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
