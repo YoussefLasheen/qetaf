@@ -1,31 +1,177 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
+import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
+import 'package:qetaf/widgets/Ordering%20System/widgets/product_listing.dart';
+import 'package:qetaf/widgets/Ordering%20System/widgets/products_list.dart';
+import 'package:qetaf/widgets/products_section/models/product.dart';
+
+import 'dart:math';
 
 class OrderDialog extends StatelessWidget {
   const OrderDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    CartModel cart = Provider.of<CartModel>(context);
+    Random random = new Random();
     return Hero(
       tag: 'tag',
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 200),
-        child: Material(
-          color: Colors.transparent,
-          child: Container(
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    blurRadius: 10,
-                  )
-                ]),
-            child: IconButton(
-              icon: const Icon(Icons.exit_to_app),
-              onPressed: () {
-                Navigator.pop(context);
-              },
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints.expand(width: 1500, height: 800),
+            child: Material(
+              color: Color(0xfff7f7fa),
+              elevation: 20,
+              borderRadius: BorderRadius.circular(20),
+              shadowColor: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: SingleChildScrollView(
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(minWidth: 1500, minHeight: 800),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "عربة التسوق ",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    '(' +
+                                        cart.products.length.toString() +
+                                        ' منتج' +
+                                        ')',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w200,
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.grey),
+                                  )
+                                ],
+                              ),
+                              ProductsList(cart: cart),
+                              TextButton(
+                                  onPressed: () {
+                                    cart.add(ProductDetails(
+                                        id: random.nextInt(500).toString(),
+                                        title: 'عسل',
+                                        shortDescription: ' عسل عسل عسل عسل',
+                                        imageSource: 'imageSource',
+                                        price: random.nextInt(500).toDouble(),
+                                        tags: []));
+                                  },
+                                  child: Text("data"))
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: ConstrainedBox(
+                          constraints:
+                              BoxConstraints(maxHeight: 100, maxWidth: 50),
+                          child: Container(
+                            alignment: Alignment.topCenter,
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.grey)),
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Expanded(
+                                    child: Row(
+                                      children: [
+                                        Expanded(child: Text('المجموع')),
+                                        Expanded(
+                                            child: Text(cart
+                                                    .calculateTotalPrice()
+                                                    .toString() +
+                                                ' جنيه')),
+                                      ],
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            elevation: 50,
+                                            primary: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                          ),
+                                          onPressed: () {},
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: FittedBox(
+                                              child: Text(
+                                                'تابع الشراء',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        OutlinedButton(
+                                          style: OutlinedButton.styleFrom(
+                                            side: const BorderSide(
+                                              color: Colors.black,
+                                              style: BorderStyle.solid,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: FittedBox(
+                                              child: Text(
+                                                'الرجوع للموقع',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
