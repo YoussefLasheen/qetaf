@@ -16,7 +16,10 @@ class CartModel extends ChangeNotifier {
   void add(ProductDetails productDetails) {
     for (var i = 0; i < products.length; i++) {
       if (productDetails.id == products[i].productDetails.id) {
-        products[i].quantity += 1;
+        ProductListingModel oldProduct = products[i];
+        oldProduct.quantity = products[i].quantity + 1;
+        products.removeAt(i);
+        products.add(oldProduct);
         notifyListeners();
         return;
       }
