@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
+import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/order_dialog.dart';
 import 'package:qetaf/widgets/Ordering%20System/widgets/products_list.dart';
 import 'package:qetaf/widgets/Ordering%20System/Cart/widgets/toggle_cart_button.dart';
 
@@ -84,7 +85,61 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                           heightFactor: _controller
                               .drive(CurveTween(curve: Curves.easeInOutCubic))
                               .value,
-                          child: ProductsList(cart: cart),
+                          child: Container(
+                            constraints: BoxConstraints(minHeight: 150),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ProductsList(cart: cart),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(cart
+                                              .calculateTotalPrice()
+                                              .toString() +
+                                          ''),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: TextButton(
+                                            style: TextButton.styleFrom(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 20),
+                                              elevation: 50,
+                                              backgroundColor: Colors.orange,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15)),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                PageRouteBuilder(
+                                                    opaque: false,
+                                                    pageBuilder: (_, __, ___) =>
+                                                        const OrderDialog()),
+                                              );
+                                            },
+                                            child: const Text(
+                                              "Order",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
