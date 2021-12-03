@@ -47,7 +47,9 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     CartModel cart = Provider.of<CartModel>(context);
-    return AnimatedBuilder(
+    return cart.products.isEmpty?
+    Container(): 
+    AnimatedBuilder(
       animation: _controller.view,
       builder: (BuildContext context, Widget? child) {
         return Align(
