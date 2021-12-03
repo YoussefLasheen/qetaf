@@ -76,6 +76,7 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                           child: ToggleCartButton(
                         isExpanded: _isExpanded,
                         toggleExpand: _toggleExpand,
+                        product:cart.products.last
                       )),
                       ClipRect(
                         child: Align(
