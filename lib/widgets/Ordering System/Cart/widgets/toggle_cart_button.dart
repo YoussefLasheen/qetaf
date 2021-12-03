@@ -16,16 +16,23 @@ class ToggleCartButton extends StatelessWidget {
       onTap: toggleExpand,
       child: Container(
         child: isExpanded
-            ? const Align(
-                alignment: Alignment.topLeft,
+            ? const Center(
                 child: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.close),
+                  child: Icon(Icons.arrow_drop_down_sharp),
                 ),
               )
             : Column(
                 children: [
-                  ProductListing(product: product,)
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Icon(Icons.arrow_drop_up_sharp),
+                    ),
+                  ),
+                  ProductListing(
+                    product: product,
+                  )
                 ],
               ),
       ),
