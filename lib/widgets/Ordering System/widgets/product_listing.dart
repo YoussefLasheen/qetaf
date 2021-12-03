@@ -13,13 +13,15 @@ class ProductListing extends StatelessWidget {
     CartModel cart = Provider.of<CartModel>(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
+      child: Container(
+        color: Colors.white,
         height: 100,
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 1,
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(
@@ -30,42 +32,40 @@ class ProductListing extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Expanded(
-              child: ListTile(
-                title: Column(
+              SizedBox(width: 5,),
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: FittedBox(
-                              child: Text(
-                                product.productDetails.title,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: FittedBox(
-                              child: IconButton(
-                                icon: Icon(Icons.close),
-                                onPressed: () { cart.remove(product);},
-                              ),
-                            ),
-                          ),
-                        ],
+                    Text(
+                      product.productDetails.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
                       ),
                     ),
-                    Expanded(
-                      child: FittedBox(
-                        child: Text(
-                          product.productDetails.shortDescription,
-                        ),
+                    Text(
+                      product.productDetails.shortDescription,
+                      style: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 10,
+                        color: Colors.grey
                       ),
                     ),
-                    Expanded(
+                  ],
+                ),
+              Spacer(),
+              Column(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.close),
+                    hoverColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onPressed: () {
+                      cart.remove(product);
+                    },
+                  ),
+                  Expanded(
                       child: FittedBox(
                         child: Text(
                           product.productDetails.price.toString() +' EGP',
@@ -87,11 +87,10 @@ class ProductListing extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                ],
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
