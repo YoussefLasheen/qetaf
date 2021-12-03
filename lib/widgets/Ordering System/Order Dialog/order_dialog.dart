@@ -6,7 +6,6 @@ import 'package:qetaf/widgets/Ordering%20System/widgets/product_listing.dart';
 import 'package:qetaf/widgets/Ordering%20System/widgets/products_list.dart';
 import 'package:qetaf/widgets/products_section/models/product.dart';
 
-import 'dart:math';
 
 class OrderDialog extends StatelessWidget {
   const OrderDialog({Key? key}) : super(key: key);
@@ -14,7 +13,6 @@ class OrderDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartModel cart = Provider.of<CartModel>(context);
-    Random random = new Random();
     return Hero(
       tag: 'tag',
       child: Directionality(
@@ -64,17 +62,6 @@ class OrderDialog extends StatelessWidget {
                                 ],
                               ),
                               ProductsList(cart: cart),
-                              TextButton(
-                                  onPressed: () {
-                                    cart.add(ProductDetails(
-                                        id: random.nextInt(500).toString(),
-                                        title: 'عسل',
-                                        shortDescription: ' عسل عسل عسل عسل',
-                                        imageSource: 'imageSource',
-                                        price: random.nextInt(500).toDouble(),
-                                        tags: []));
-                                  },
-                                  child: Text("data"))
                             ],
                           ),
                         ),
