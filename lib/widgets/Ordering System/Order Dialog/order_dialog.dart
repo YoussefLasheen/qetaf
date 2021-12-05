@@ -54,7 +54,7 @@ class OrderDialog extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: ConstrainedBox(
                             constraints:
-                                BoxConstraints(maxWidth: 300, maxHeight: 300),
+                                BoxConstraints(maxWidth: 300, minHeight: 125),
                             child: SidePanel(controller: controller)),
                       ),
                     ],
@@ -86,11 +86,12 @@ class SidePanel extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Flexible(
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     _buildPriceTile(
                         'المجموع الجزئي',
