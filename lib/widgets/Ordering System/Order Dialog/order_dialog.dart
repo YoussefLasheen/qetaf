@@ -92,18 +92,25 @@ class SidePanel extends StatelessWidget {
               Flexible(
                 child: Column(
                   children: [
-                    _buildPriceTile('المجموع الجزئي',
-                        process.cart.calculateTotalPrice().toString(), true),
+                    _buildPriceTile(
+                        'المجموع الجزئي',
+                        process.cart.calculateTotalPrice().toString() + ' جنيه',
+                        true),
                     _buildPriceTile(
                         'الشحن',
-                        deliveryMethodEnumDetails
-                            .getValue(process.deliveryMethod)['price']
-                            .toString(),
+                        deliveryMethodEnumDetails.getValue(
+                                    process.deliveryMethod)['price'] ==
+                                0
+                            ? 'مجاني'
+                            : deliveryMethodEnumDetails
+                                    .getValue(process.deliveryMethod)['price']
+                                    .toString() +
+                                ' جنيه',
                         process.status != statusEnum.editingAddress &&
                             process.status != statusEnum.onProductsSection),
                     _buildPriceTile(
                         'الدفع عند الإستلام',
-                        '10',
+                        '10' + ' جنيه',
                         process.status != statusEnum.editingAddress &&
                             process.status != statusEnum.onProductsSection),
                     Divider(
@@ -209,7 +216,7 @@ class SidePanel extends StatelessWidget {
                 Flexible(
                   child: FittedBox(
                     child: Text(
-                      price + ' جنيه',
+                      price,
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
