@@ -27,38 +27,48 @@ class OrderDialog extends StatelessWidget {
                 elevation: 20,
                 borderRadius: BorderRadius.circular(20),
                 shadowColor: Colors.black,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ConstrainedBox(
-                        constraints:
-                            BoxConstraints(maxWidth: 500, maxHeight: 800),
-                        child: PageView(
-                          pageSnapping: true,
-                          scrollDirection: Axis.vertical,
-                          physics: const NeverScrollableScrollPhysics(),
-                          controller: controller,
-                          children: [
-                            CartOverviewSection(cart: cart),
-                            OrderDetailsSection()
-                          ],
+                child: Consumer<OrderingProcessModel>(
+                  builder: (_,process,___) {
+                    return IndexedStack(
+                      index: process.status == statusEnum.done?0:1,
+                      children: [
+                        OrderConfirmationDialog(process: process,),
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ConstrainedBox(
+                                constraints:
+                                    BoxConstraints(maxWidth: 500, maxHeight: 800),
+                                child: PageView(
+                                  pageSnapping: true,
+                                  scrollDirection: Axis.vertical,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  controller: controller,
+                                  children: [
+                                    CartOverviewSection(cart: cart),
+                                    OrderDetailsSection()
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 20),
+                                child: ConstrainedBox(
+                                    constraints:
+                                        BoxConstraints(maxWidth: 300, minHeight: 125),
+                                    child: SidePanel(controller: controller)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        child: ConstrainedBox(
-                            constraints:
-                                BoxConstraints(maxWidth: 300, minHeight: 125),
-                            child: SidePanel(controller: controller)),
-                      ),
-                    ],
-                  ),
+                      ],
+                    );
+                  }
                 ),
               ),
             ),
