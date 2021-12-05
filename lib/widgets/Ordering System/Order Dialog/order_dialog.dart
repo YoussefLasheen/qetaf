@@ -63,12 +63,16 @@ class OrderDialog extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              ProductsList(cart: cart),
-                            ],
-                          ),
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: SidePanel(controller: controller),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
