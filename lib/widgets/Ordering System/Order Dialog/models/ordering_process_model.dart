@@ -16,17 +16,17 @@ class deliveryMethodEnumDetails {
     switch (deliveryMethod) {
       case deliveryMethodEnum.fedex:
         return {
-          'name': 'FedEx',
+          'name': 'الشحن للمنزل',
           'price': 40,
           'icon': Icons.delivery_dining_rounded,
-          'estimatedDeliveryTime': '2 - 3 days'
+          'estimatedDeliveryTime': 'من يومان الي 3 ايام'
         };
       case deliveryMethodEnum.pickup:
         return {
-          'name': 'Pickup',
+          'name': 'الإستلام من أي فرع',
           'icon': Icons.store_mall_directory_rounded,
           'price': 0,
-          'estimatedDeliveryTime': 'ASAP'
+          'estimatedDeliveryTime': 'في أقرب وقت'
         };
     }
   }
@@ -38,14 +38,14 @@ class paymentMethodEnumDetails {
     switch (paymentMethod) {
       case paymentMethodEnum.COD:
         return {
-          'name': 'Cash on Delivery',
+          'name': 'الدفع عند الإستلام',
           'price': 10,
           'icon': Icons.money_rounded,
           'isAvailble':true
         };
         case paymentMethodEnum.CARD:
         return {
-          'name': 'Banking Card',
+          'name': 'بطاقة بنكية',
           'price': 0,
           'icon': Icons.credit_card_rounded,
           'isAvailble':false
