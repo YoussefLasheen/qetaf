@@ -31,10 +31,33 @@ class deliveryMethodEnumDetails {
     }
   }
 }
+enum paymentMethodEnum { COD , CARD}
+
+class paymentMethodEnumDetails {
+  static Map getValue(paymentMethodEnum paymentMethod) {
+    switch (paymentMethod) {
+      case paymentMethodEnum.COD:
+        return {
+          'name': 'Cash on Delivery',
+          'price': 10,
+          'icon': Icons.money_rounded,
+          'isAvailble':true
+        };
+        case paymentMethodEnum.CARD:
+        return {
+          'name': 'Banking Card',
+          'price': 0,
+          'icon': Icons.credit_card_rounded,
+          'isAvailble':false
+        };
+    }
+  }
+}
 
 class OrderingProcessModel extends ChangeNotifier {
   statusEnum status = statusEnum.onProductsSection;
   deliveryMethodEnum deliveryMethod = deliveryMethodEnum.pickup;
+  paymentMethodEnum paymentMethod = paymentMethodEnum.COD;
   final CartModel cart;
   ShippingAddressModel shippingAddress = ShippingAddressModel.notAssigned();
 
@@ -71,6 +94,10 @@ class OrderingProcessModel extends ChangeNotifier {
 
   void switchDeliveryMethod(deliveryMethodEnum newMethod) {
     deliveryMethod = newMethod;
+    notifyListeners();
+  }
+  void switchPaymentMethod(paymentMethodEnum newMethod) {
+    paymentMethod = newMethod;
     notifyListeners();
   }
 }
