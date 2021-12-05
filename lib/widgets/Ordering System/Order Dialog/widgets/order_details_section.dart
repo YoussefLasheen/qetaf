@@ -62,18 +62,18 @@ class ShippingDetails extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: TextButton(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("أضف عنوان جديد"),
-                        Icon(Icons.add_business_rounded),
-                      ],
-                    ),
-                    onPressed: () {
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("أضف عنوان جديد"),
+                          Icon(Icons.add_business_rounded),
+                        ],
+                      ),
+                      onPressed: () {
                         process.switchAddress(ShippingAddressModel.notAssigned());
                         process.switchStatus(statusEnum.editingAddress);
-                    }
-                  ),
+                      }
+                      ),
                 ),
                 Column(
                   children: [
@@ -248,7 +248,9 @@ class PaymentDetails extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Jane Doe',
+                                paymentMethodEnumDetails
+                        .getValue(process.paymentMethod)['name']
+                        .toString(),
                               ),
                               FlatButton(
                                 onPressed: () => process.switchStatus(
@@ -260,22 +262,18 @@ class PaymentDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text(
-                            "الدفع عند الإستلام",
-                          ),
                         ],
                       )
                     : Container(),
                 ClipRect(
                   child: Align(
                     heightFactor: _currentlyEditing ? 1 : 0,
-                    child: TextButton(
-                      onPressed: () {
-                        process.switchStatus(
-                            statusEnum.onCompleteProductDetailsSection);
-                      },
-                      child: Text("تأكيد طريقة الدفع",
-                          style: TextStyle(color: Colors.black)),
+                    child: Row(
+                      children: [
+                        _buildPaymentMethodCard(paymentMethodEnum.COD, process),
+                        _buildPaymentMethodCard(
+                            paymentMethodEnum.CARD, process),
+                      ],
                     ),
                   ),
                 ),
@@ -284,6 +282,55 @@ class PaymentDetails extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildPaymentMethodCard(
+    paymentMethodEnum paymentMethod,
+    OrderingProcessModel process,
+  ) {
+    bool _isSelected = process.paymentMethod == paymentMethod;
+    return Card(
+      color: _isSelected ? Colors.orange : Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      child: InkWell(
+        onTap: paymentMethodEnumDetails.getValue(paymentMethod)['isAvailble']
+            ? () {
+                process.switchPaymentMethod(paymentMethod);
+                process.switchStatus(statusEnum.onCompleteProductDetailsSection);
+              }
+            : null,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: 100),
+            child: Column(
+              children: [
+                Text(
+                  paymentMethodEnumDetails.getValue(paymentMethod)['name'],
+                  style: TextStyle(
+                      fontWeight:
+                          _isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: _isSelected ? Colors.white : Colors.black),
+                ),
+                Icon(paymentMethodEnumDetails.getValue(paymentMethod)['icon'],
+                    size: 30, color: _isSelected ? Colors.white : Colors.black),
+                SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  '+' +
+                      paymentMethodEnumDetails
+                          .getValue(paymentMethod)['price']
+                          .toString(),
+                  style:
+                      TextStyle(color: _isSelected ? Colors.white : Colors.black),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
