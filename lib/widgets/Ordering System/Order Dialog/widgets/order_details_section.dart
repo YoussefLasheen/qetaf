@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/ordering_process_model.dart';
+import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/shippingaddress_model.dart';
 
 class OrderDetailsSection extends StatelessWidget {
   const OrderDetailsSection({Key? key}) : super(key: key);
@@ -46,58 +47,171 @@ class ShippingDetails extends StatelessWidget {
           child: Text(
             'العنوان',
             style: TextStyle(
-                fontWeight: FontWeight.w900, fontSize: 12, color: Colors.black),
+                fontWeight: FontWeight.w900, fontSize: 18, color: Colors.black),
           ),
         ),
         Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
+            child: IndexedStack(
+              index: (process.addressNotAssigned() && !_currentlyEditing) ||
+                      (!process.addressNotAssigned() && _currentlyEditing)
+                  ? 0
+                  : 1,
               children: [
-                !_currentlyEditing
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Positioned.fill(
+                  child: TextButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("أضف عنوان جديد"),
+                        Icon(Icons.add_business_rounded),
+                      ],
+                    ),
+                    onPressed: () {
+                        process.switchAddress(ShippingAddressModel.notAssigned());
+                        process.switchStatus(statusEnum.editingAddress);
+                    }
+                  ),
+                ),
+                Column(
+                  children: [
+                    !_currentlyEditing
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                'سلمي أحمد',
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    process.shippingAddress.fullName,
+                                  ),
+                                  FlatButton(
+                                    onPressed: () {
+                                      process.switchStatus(
+                                          statusEnum.editingAddress);
+                                      process.switchAddress(ShippingAddressModel.notAssigned());
+                                    },
+                                    child: Text(
+                                      'تغيير',
+                                      style: TextStyle(color: Colors.orange),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              FlatButton(
-                                onPressed: () => process
-                                    .switchStatus(statusEnum.editingAddress),
-                                child: Text(
-                                  'تغيير',
-                                  style: TextStyle(color: Colors.orange),
-                                ),
-                              ),
+                              Text(process.shippingAddress.address),
+                              Text(process.shippingAddress.phoneNo),
                             ],
-                          ),
-                          Text("7 شارع جمال عبد الناصر متفرع من السلام"),
-                        ],
-                      )
-                    : Container(),
-                ClipRect(
-                  child: Align(
-                    heightFactor: _currentlyEditing ? 1 : 0,
-                    child: TextButton(
-                      onPressed: () {
-                        process.switchStatus(statusEnum.editingPaymentOptions);
-                      },
-                      child: Text(
-                        "تأكيد العنوان",
-                        style: TextStyle(color: Colors.black),
+                          )
+                        : Container(),
+                    ClipRect(
+                      child: Align(
+                        heightFactor: _currentlyEditing ? 1 : 0,
+                        child: ShippingAddressForm(
+                          process: process,
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class ShippingAddressForm extends StatelessWidget {
+  static var _formKey = GlobalKey<FormState>();
+  static final _nameController = TextEditingController();
+  static final _addressController = TextEditingController();
+  static final _phoneController = TextEditingController();
+  final OrderingProcessModel process;
+  static String p =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+
+  const ShippingAddressForm({Key? key, required this.process})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    String contactNumber;
+    String pin;
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxHeight: 300,
+          ),
+          child: Column(
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(minHeight: 70),
+                child: TextFormField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(
+                      hintText: 'الاسم', icon: Icon(Icons.person)),
+                  validator: (val) => val!.isEmpty ? 'الاسم غير صحيح' : null,
+                ),
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(minHeight: 70),
+                child: TextFormField(
+                  controller: _addressController,
+                  decoration: const InputDecoration(
+                      hintText: 'العنوان', icon: Icon(Icons.house_rounded)),
+                  validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                ),
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(minHeight: 70),
+                child: TextFormField(
+                  controller: _phoneController,
+                  decoration: const InputDecoration(
+                      hintText: 'رقم التيليفون', icon: Icon(Icons.phone)),
+                  validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                ),
+              ),
+              Spacer(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints.expand(height: 50, width: 150),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextButton(
+                      onPressed: () {
+                        final form = _formKey.currentState;
+                        if (form!.validate()) {
+                          form.save();
+                          process.switchAddress(ShippingAddressModel(
+                              fullName: _nameController.text,
+                              address: _addressController.text,
+                              phoneNo: _phoneController.text));
+                          process
+                              .switchStatus(statusEnum.editingPaymentOptions);
+                        }
+                      },
+                      child: Text(
+                        "تأكيد العنوان",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -117,7 +231,7 @@ class PaymentDetails extends StatelessWidget {
           child: Text(
             'طرق الدفع',
             style: TextStyle(
-                fontWeight: FontWeight.w900, fontSize: 12, color: Colors.black),
+                fontWeight: FontWeight.w900, fontSize: 18, color: Colors.black),
           ),
         ),
         Card(
@@ -188,7 +302,7 @@ class DeleveryMethodDetails extends StatelessWidget {
           child: Text(
             'التوصيل',
             style: TextStyle(
-                fontWeight: FontWeight.w900, fontSize: 12, color: Colors.black),
+                fontWeight: FontWeight.w900, fontSize: 18, color: Colors.black),
           ),
         ),
         Row(
