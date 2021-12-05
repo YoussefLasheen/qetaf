@@ -13,6 +13,7 @@ class OrderDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartModel cart = Provider.of<CartModel>(context);
+    PageController controller = PageController();
     return Hero(
       tag: 'tag',
       child: ChangeNotifierProvider(
@@ -38,31 +39,16 @@ class OrderDialog extends StatelessWidget {
                         child: ConstrainedBox(
                           constraints:
                               BoxConstraints(minWidth: 1500, minHeight: 800),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
+                          child: PageView(
+                            pageSnapping: true,
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            controller: controller,
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "عربة التسوق ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                  Text(
-                                    '(' +
-                                        cart.products.length.toString() +
-                                        ' منتج' +
-                                        ')',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w200,
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.grey),
-                                  )
-                                ],
-                              ),
+                              CartOverviewSection(cart: cart),
+                              OrderDetailsSection()
+                            ],
+                          ),
                         ),
                       ),
                       Expanded(
