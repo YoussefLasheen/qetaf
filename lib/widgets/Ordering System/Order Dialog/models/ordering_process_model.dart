@@ -6,7 +6,8 @@ enum statusEnum {
   onProductsSection,
   editingAddress,
   editingPaymentOptions,
-  onCompleteProductDetailsSection
+  onCompleteProductDetailsSection,
+  done
 }
 
 enum deliveryMethodEnum { pickup, fedex }
@@ -98,6 +99,13 @@ class OrderingProcessModel extends ChangeNotifier {
   }
   void switchPaymentMethod(paymentMethodEnum newMethod) {
     paymentMethod = newMethod;
+    notifyListeners();
+  }
+
+  void reset(){
+    status = statusEnum.onProductsSection;
+    shippingAddress = ShippingAddressModel.notAssigned();
+    cart.empty();
     notifyListeners();
   }
 }
