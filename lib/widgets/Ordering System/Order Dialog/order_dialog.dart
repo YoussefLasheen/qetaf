@@ -31,26 +31,31 @@ class OrderDialog extends StatelessWidget {
                   padding: const EdgeInsets.all(20.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Expanded(
-                        flex: 2,
-                        child: ConstrainedBox(
-                          constraints:
-                              BoxConstraints(minWidth: 1500, minHeight: 800),
-                          child: PageView(
-                            pageSnapping: true,
-                            scrollDirection: Axis.vertical,
-                            physics: const NeverScrollableScrollPhysics(),
-                            controller: controller,
-                            children: [
-                              CartOverviewSection(cart: cart),
-                              OrderDetailsSection()
-                            ],
-                          ),
+                      ConstrainedBox(
+                        constraints:
+                            BoxConstraints(maxWidth: 500, maxHeight: 800),
+                        child: PageView(
+                          pageSnapping: true,
+                          scrollDirection: Axis.vertical,
+                          physics: const NeverScrollableScrollPhysics(),
+                          controller: controller,
+                          children: [
+                            CartOverviewSection(cart: cart),
+                            OrderDetailsSection()
+                          ],
                         ),
                       ),
-                      Expanded(
-                        child: SidePanel(controller: controller),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20),
+                        child: ConstrainedBox(
+                            constraints:
+                                BoxConstraints(maxWidth: 300, maxHeight: 300),
+                            child: SidePanel(controller: controller)),
                       ),
                     ],
                   ),
