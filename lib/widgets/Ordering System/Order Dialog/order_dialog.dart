@@ -230,7 +230,7 @@ class SidePanel extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                     ),
-                    onPressed: () => _forwardButtonFunction(process),
+                    onPressed: () => _forwardButtonFunction(process, context),
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: FittedBox(
@@ -315,7 +315,8 @@ class SidePanel extends StatelessWidget {
     }
   }
 
-  void _forwardButtonFunction(OrderingProcessModel process) {
+  void _forwardButtonFunction(
+      OrderingProcessModel process, BuildContext context) {
     switch (process.status) {
       case statusEnum.onProductsSection:
         {
@@ -326,7 +327,32 @@ class SidePanel extends StatelessWidget {
         break;
       case statusEnum.onCompleteProductDetailsSection:
         {
-          null;
+          if (process.deliveryMethod == deliveryMethodEnum.fedex) {
+            if (process.addressNotAssigned()) {
+              print("1");
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: Center(child: const Text('من فضلك أدخل عنوانك')),
+                  content: const Text(
+                    '''لقد اخترت التوصيل للمنزل,
+                   فمنفضلك ادخل العنوان او اختر الإستلام من الفرع''',
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text('موافق'),
+                    ),
+                  ],
+                ),
+              );
+            }else{
+            process.switchStatus(statusEnum.done);  
+            }
+          } else {
+            process.switchStatus(statusEnum.done);
+          }
         }
         break;
       default:
