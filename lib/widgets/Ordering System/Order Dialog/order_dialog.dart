@@ -15,6 +15,8 @@ class OrderDialog extends StatelessWidget {
     CartModel cart = Provider.of<CartModel>(context);
     return Hero(
       tag: 'tag',
+      child: ChangeNotifierProvider(
+        create: (_) => OrderingProcessModel(cart: cart),
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: Center(
