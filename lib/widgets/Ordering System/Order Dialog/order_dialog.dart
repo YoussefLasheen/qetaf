@@ -231,14 +231,18 @@ class SidePanel extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15)),
                     ),
                     onPressed: () => _forwardButtonFunction(process),
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: FittedBox(
-                        child: Text(
-                          'تابع الشراء',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.white),
-                        ),
+                        child: (process.status ==
+                                statusEnum.onCompleteProductDetailsSection)
+                            ? Text('تأكيد الطلب')
+                            : Text(
+                                'التالي',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                       ),
                     ),
                   ),
