@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
+import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/shippingaddress_model.dart';
 
 enum statusEnum {
   onProductsSection,
@@ -35,6 +36,7 @@ class OrderingProcessModel extends ChangeNotifier {
   statusEnum status = statusEnum.onProductsSection;
   deliveryMethodEnum deliveryMethod = deliveryMethodEnum.pickup;
   final CartModel cart;
+  ShippingAddressModel shippingAddress = ShippingAddressModel.notAssigned();
 
   OrderingProcessModel({required this.cart});
 
@@ -43,6 +45,16 @@ class OrderingProcessModel extends ChangeNotifier {
     double sum = cart.calculateTotalPrice() + deliveryMethodEnumDetails.getValue(deliveryMethod)['price'] + 10;
     return sum;
   }
+
+  void switchAddress(ShippingAddressModel newShippingAddress) {
+    shippingAddress = newShippingAddress;
+    notifyListeners();
+  }
+  bool addressNotAssigned() {
+    bool result = [shippingAddress.fullName, shippingAddress.address, shippingAddress.phoneNo].contains('NA');
+    print(shippingAddress.fullName);
+    return result;
+   }
 
   void switchStatus(statusEnum newStatus) {
     status = newStatus;
