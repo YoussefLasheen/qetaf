@@ -129,7 +129,7 @@ class SidePanel extends StatelessWidget {
                                   child: FittedBox(
                                     child: Text(
                                       'المجموع الكلي',
-                                      style: TextStyle(fontSize: 20),
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ),
@@ -138,7 +138,7 @@ class SidePanel extends StatelessWidget {
                                     child: Text(
                                       process.calculateTotalPrice().toString() +
                                           ' جنيه',
-                                      style: TextStyle(fontSize: 15),
+                                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 ),
