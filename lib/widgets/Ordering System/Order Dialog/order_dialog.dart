@@ -80,96 +80,115 @@ class SidePanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     OrderingProcessModel process = Provider.of<OrderingProcessModel>(context);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: ConstrainedBox(
-        constraints:
-            BoxConstraints(maxWidth: 100, minHeight: 50, maxHeight: 200),
-        child: Container(
-          alignment: Alignment.topCenter,
-          decoration: BoxDecoration(border: Border.all(color: Colors.grey)),
-          padding: EdgeInsets.all(10),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Column(
-                    children: [
-                      _buildPriceTile('المجموع الجزئي',
-                          process.cart.calculateTotalPrice().toString(), true),
-                      _buildPriceTile(
-                          'الشحن',
-                          deliveryMethodEnumDetails
-                              .getValue(process.deliveryMethod)['price']
-                              .toString(),
-                          process.status != statusEnum.editingAddress &&
-                              process.status != statusEnum.onProductsSection),
-                      _buildPriceTile(
-                          'الدفع عند الإستلام',
-                          '10',
-                          process.status != statusEnum.editingAddress &&
-                              process.status != statusEnum.onProductsSection),
-                      _buildPriceTile(
-                          'المجموع الكلي',
-                          process.calculateTotalPrice().toString(),
-                          process.status != statusEnum.editingAddress &&
-                              process.status != statusEnum.onProductsSection),
-                    ],
-                  ),
-                ),
-                Row(
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Column(
                   children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 50,
-                        primary: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      ),
-                      onPressed: () => _forwardButtonFunction(process),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: FittedBox(
-                          child: Text(
-                            'تابع الشراء',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                        ),
-                      ),
+                    _buildPriceTile('المجموع الجزئي',
+                        process.cart.calculateTotalPrice().toString(), true),
+                    _buildPriceTile(
+                        'الشحن',
+                        deliveryMethodEnumDetails
+                            .getValue(process.deliveryMethod)['price']
+                            .toString(),
+                        process.status != statusEnum.editingAddress &&
+                            process.status != statusEnum.onProductsSection),
+                    _buildPriceTile(
+                        'الدفع عند الإستلام',
+                        '10',
+                        process.status != statusEnum.editingAddress &&
+                            process.status != statusEnum.onProductsSection),
+                    Divider(
+                      height: 2,
+                      color: Colors.black12,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    OutlinedButton(
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(
-                          color: Colors.black,
-                          style: BorderStyle.solid,
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                      ),
-                      onPressed: () => _backwardButtonFunction(process),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: FittedBox(
-                          child: Text(
-                            'الرجوع',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ),
-                      ),
-                    ),
+                    process.status != statusEnum.editingAddress &&
+                            process.status != statusEnum.onProductsSection
+                        ? Flexible(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: FittedBox(
+                                    child: Text(
+                                      'المجموع الكلي',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ),
+                                Flexible(
+                                  child: FittedBox(
+                                    child: Text(
+                                      process.calculateTotalPrice().toString() +
+                                          ' جنيه',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container()
                   ],
                 ),
-              ]),
-        ),
+              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 50,
+                      primary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                    ),
+                    onPressed: () => _forwardButtonFunction(process),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          'تابع الشراء',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(
+                        color: Colors.black,
+                        style: BorderStyle.solid,
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                    ),
+                    onPressed: () => _backwardButtonFunction(process),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          'الرجوع',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ]),
       ),
     );
   }
@@ -185,13 +204,13 @@ class SidePanel extends StatelessWidget {
                     child: FittedBox(
                         child: Text(
                   title,
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 15),
                 ))),
                 Flexible(
                   child: FittedBox(
                     child: Text(
                       price + ' جنيه',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
