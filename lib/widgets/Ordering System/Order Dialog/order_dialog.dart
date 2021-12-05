@@ -83,7 +83,7 @@ class SidePanel extends StatelessWidget {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -149,6 +149,78 @@ class SidePanel extends StatelessWidget {
                   ],
                 ),
               ),
+              Visibility(
+                visible: !process.addressNotAssigned() && process.status == statusEnum.onCompleteProductDetailsSection,
+                replacement: SizedBox.shrink(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Divider(
+                        height: 2,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    Text(
+                      'الشحن الي',
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                    ),
+                Text(process.shippingAddress.fullName.toString()),
+                Text(process.shippingAddress.address.toString()),
+                Text(process.shippingAddress.phoneNo.toString())
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: process.status == statusEnum.onCompleteProductDetailsSection,
+                replacement: SizedBox.shrink(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Divider(
+                        height: 2,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    Text(
+                      'الدفع',
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                    ),
+                Text('عن طريق ' + paymentMethodEnumDetails.getValue(
+                                    process.paymentMethod)['name']),
+                  ],
+                ),
+              ),
+              Visibility(
+                visible: process.status == statusEnum.onCompleteProductDetailsSection,
+                replacement: SizedBox.shrink(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: Divider(
+                        height: 2,
+                        color: Colors.black54,
+                      ),
+                    ),
+                    Text(
+                      'التوصيل',
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                    ),
+                    Text('عن طريق ' +
+                        deliveryMethodEnumDetails
+                            .getValue(process.deliveryMethod)['name']),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20,),
               Row(
                 children: [
                   ElevatedButton(
