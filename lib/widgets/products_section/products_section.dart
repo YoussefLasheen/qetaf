@@ -25,7 +25,7 @@ class ProductsSection extends StatelessWidget {
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
               const Text(
-                "عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل عسل",
+                "عسل نحل طبيعي ١٠٠٪ من مزارعنا في الغربية",
                 style: TextStyle(
                     fontWeight: FontWeight.w300, color: Colors.black38),
               ),
