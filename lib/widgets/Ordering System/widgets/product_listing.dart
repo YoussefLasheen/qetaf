@@ -14,8 +14,11 @@ class ProductListing extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        color: Colors.white,
         height: 100,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Colors.white
+        ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -34,7 +37,7 @@ class ProductListing extends StatelessWidget {
               ),
               SizedBox(width: 5,),
               Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       product.productDetails.title,
