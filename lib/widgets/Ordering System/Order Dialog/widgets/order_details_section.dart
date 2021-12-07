@@ -180,7 +180,7 @@ class ShippingAddressForm extends StatelessWidget {
                     controller: _phoneController,
                     decoration: const InputDecoration(
                         hintText: 'رقم التيليفون', icon: Icon(Icons.phone)),
-                    validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                    validator: (val) => val!.isEmpty ? 'رقم التيليفون غير صحيح' : null,
                   ),
                 ),
                 Spacer(),
