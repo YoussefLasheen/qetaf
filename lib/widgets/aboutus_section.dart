@@ -12,7 +12,7 @@ class AboutusSection extends StatelessWidget {
       height: screenHeight * 0.8,
       child: Stack(
         children: [
-          Positioned.fill(child: Image.network('assets/images/aboutus_bg.jpg',fit: BoxFit.cover,)),
+          Positioned.fill(child: Image.asset('assets/images/aboutus_bg.jpg',fit: BoxFit.cover,)),
           Positioned(
             right: 50,
             top: 100,

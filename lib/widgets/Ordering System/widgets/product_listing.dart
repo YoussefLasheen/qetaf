@@ -29,7 +29,7 @@ class ProductListing extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: NetworkImage(
+                      image: AssetImage(
                           product.productDetails.imageSource),
                     ),
                   ),
