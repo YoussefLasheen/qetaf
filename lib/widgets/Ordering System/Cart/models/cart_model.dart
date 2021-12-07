@@ -45,4 +45,8 @@ class CartModel extends ChangeNotifier {
       }
     }
   }
+
+  void empty(){
+    products = [];
+  }
 }
