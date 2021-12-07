@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class WelcomeSection extends StatelessWidget {
-  const WelcomeSection({Key? key}) : super(key: key);
+  final ItemScrollController itemScrollController;
+  const WelcomeSection({Key? key, required this.itemScrollController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,12 @@ class WelcomeSection extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            itemScrollController.scrollTo(
+                                index: 1,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOutCubic);
+                          },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: FittedBox(
@@ -72,7 +79,12 @@ class WelcomeSection extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(15)),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            itemScrollController.scrollTo(
+                                index: 2,
+                                duration: const Duration(seconds: 1),
+                                curve: Curves.easeInOutCubic);
+                          },
                           child: const Padding(
                             padding: EdgeInsets.all(8.0),
                             child: FittedBox(

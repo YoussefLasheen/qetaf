@@ -18,6 +18,15 @@ class HomePage extends StatelessWidget {
     final ItemScrollController itemScrollController = ItemScrollController();
     final ItemPositionsListener itemPositionsListener =
         ItemPositionsListener.create();
+    List items = [
+      WelcomeSection(
+        itemScrollController: itemScrollController,
+      ),
+      ProductsSection(),
+      AboutusSection(),
+      ContactSection()
+    ];
+
     return Material(
         child: Stack(
           children: [
@@ -57,9 +66,3 @@ class HomePage extends StatelessWidget {
   }
 }
 
-List items = const [
-  WelcomeSection(),
-  ProductsSection(),
-  AboutusSection(),
-  ContactSection()
-];
