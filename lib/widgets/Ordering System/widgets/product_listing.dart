@@ -27,7 +27,7 @@ class ProductListing extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.fill,
                       image: NetworkImage(
-                          'https://source.unsplash.com/user/c_v_r/1000x1000'),
+                          product.productDetails.imageSource),
                     ),
                   ),
                 ),
@@ -40,7 +40,7 @@ class ProductListing extends StatelessWidget {
                       product.productDetails.title,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 20
+                        fontSize: 16
                       ),
                     ),
                     Text(

@@ -12,10 +12,10 @@ class ProductCard extends StatelessWidget {
     CartModel cart = Provider.of<CartModel>(context);
     return Column(
       children: [
-        const SizedBox(
+        SizedBox(
           height: 250,
           width: 250,
-          child: Placeholder(),
+          child: Image.asset(product.imageSource),
         ),
         Text(
           product.title,

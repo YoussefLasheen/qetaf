@@ -11,50 +11,7 @@ class ProductsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List dummyProducts = [
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 50,
-        'id':'1'
-      },
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 65,
-        'id':'2'
-      },
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 70,
-        'id':'3'
-      },
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 77,
-        'id':'4'
-      },
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 77,
-        'id':'5'
-      },
-      {
-        'title': 'عسل',
-        'shortDescription': 'عسل عسل عسل عسل عسل عسل',
-        'imageSource': '',
-        'price': 77,
-        'id':'6'
-      }
-    ];
+
     return Row(
       children: [
         const Spacer(),
@@ -79,17 +36,10 @@ class ProductsSection extends StatelessWidget {
                     spacing: 100,
                     textDirection: TextDirection.rtl,
                     children: [
-                      for (Map product in dummyProducts.sublist(0,3))
-                        ProductCard(
-                          product: ProductDetails(
-                                id: product['id'],
-                                title: product['title'],
-                              shortDescription: product['shortDescription'],
-                              imageSource: product['imageSource'],
-                              price: product['price'],
-                              tags: [],
-                              ),
-                        )
+                      ...List.generate(3, (index) {
+                        return ProductCard(
+                            product: demoProducts[index]);
+                      }),
                     ],
                   ),
                   ExpandChild(
@@ -97,16 +47,10 @@ class ProductsSection extends StatelessWidget {
                       spacing: 100,
                       textDirection: TextDirection.rtl,
                       children: [
-                        for (Map product in dummyProducts.sublist(3,dummyProducts.length))
-                          ProductCard(
-                            product: ProductDetails(
-                                title: product['title'],
-                                shortDescription: product['shortDescription'],
-                                imageSource: product['imageSource'],
-                                price: product['price'],
-                                tags: [],
-                                id: product['id']),
-                          )
+                        ...List.generate(demoProducts.length -3, (index) {
+                        return ProductCard(
+                            product: demoProducts.sublist(3, demoProducts.length)[index]);
+                      }),
                       ],
                     ),
                   ),
