@@ -62,6 +62,9 @@ class ShippingDetails extends StatelessWidget {
               children: [
                 Positioned.fill(
                   child: TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.orange,
+                    ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
