@@ -57,14 +57,40 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Hero(
-              tag: 'tag',
-              //Add another material becaus eof this bug https://github.com/flutter/flutter/issues/34119
+                    flightShuttleBuilder: (
+                      BuildContext flightContext,
+                      Animation<double> animation,
+                      HeroFlightDirection flightDirection,
+                      BuildContext fromHeroContext,
+                      BuildContext toHeroContext,
+                    ) {
+                      return SizeTransition(
+                        sizeFactor: animation,
+                        child: Center(
+                          child: Container(
+                            height: 800,
+                            width: 1500,
+                            decoration: BoxDecoration(
+                                color: Color(0xfff7f7fa),
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black,
+                                    blurRadius: 1,
+                                  )
+                                ]),
+                          ),
+                        ),
+                      );
+                    },
+                    tag: 'tag',
+                    //Add another material becaus eof this bug https://github.com/flutter/flutter/issues/34119
               child: Material(
                 color: Colors.transparent,
                 child: Container(
                   width: 300,
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Color(0xfff7f7fa),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
