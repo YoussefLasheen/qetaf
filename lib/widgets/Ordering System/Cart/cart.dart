@@ -98,13 +98,6 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(cart
-                                              .calculateTotalPrice()
-                                              .toString() +
-                                          ''),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
                                       Expanded(
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -129,12 +122,20 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                                               );
                                             },
                                             child: const Text(
-                                              "Order",
+                                              'إتمام الشراء',
                                               style: TextStyle(
                                                   color: Colors.white),
                                             ),
                                           ),
                                         ),
+                                      ),
+                                      
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(cart
+                                                .calculateTotalPrice()
+                                                .toString() +
+                                            ''),
                                       ),
                                     ],
                                   ),
