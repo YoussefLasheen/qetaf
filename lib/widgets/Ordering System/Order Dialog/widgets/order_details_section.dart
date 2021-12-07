@@ -145,73 +145,77 @@ class ShippingAddressForm extends StatelessWidget {
     String pin;
     return Form(
       key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: 300,
-          ),
-          child: Column(
-            children: [
-              ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 70),
-                child: TextFormField(
-                  controller: _nameController,
-                  decoration: const InputDecoration(
-                      hintText: 'الاسم', icon: Icon(Icons.person)),
-                  validator: (val) => val!.isEmpty ? 'الاسم غير صحيح' : null,
+      child: Align(
+        alignment: AlignmentDirectional.topStart,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: 300,
+              maxWidth: 400
+            ),
+            child: Column(
+              children: [
+                ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: 70),
+                  child: TextFormField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(
+                        hintText: 'الاسم', icon: Icon(Icons.person)),
+                    validator: (val) => val!.isEmpty ? 'الاسم غير صحيح' : null,
+                  ),
                 ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 70),
-                child: TextFormField(
-                  controller: _addressController,
-                  decoration: const InputDecoration(
-                      hintText: 'العنوان', icon: Icon(Icons.house_rounded)),
-                  validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: 70),
+                  child: TextFormField(
+                    controller: _addressController,
+                    decoration: const InputDecoration(
+                        hintText: 'العنوان', icon: Icon(Icons.house_rounded)),
+                    validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                  ),
                 ),
-              ),
-              ConstrainedBox(
-                constraints: BoxConstraints(minHeight: 70),
-                child: TextFormField(
-                  controller: _phoneController,
-                  decoration: const InputDecoration(
-                      hintText: 'رقم التيليفون', icon: Icon(Icons.phone)),
-                  validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: 70),
+                  child: TextFormField(
+                    controller: _phoneController,
+                    decoration: const InputDecoration(
+                        hintText: 'رقم التيليفون', icon: Icon(Icons.phone)),
+                    validator: (val) => val!.isEmpty ? 'العنوان غير صحيح' : null,
+                  ),
                 ),
-              ),
-              Spacer(),
-              Align(
-                alignment: Alignment.centerRight,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.expand(height: 50, width: 150),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextButton(
-                      onPressed: () {
-                        final form = _formKey.currentState;
-                        if (form!.validate()) {
-                          form.save();
-                          process.switchAddress(ShippingAddressModel(
-                              fullName: _nameController.text,
-                              address: _addressController.text,
-                              phoneNo: _phoneController.text));
-                          process
-                              .switchStatus(statusEnum.editingPaymentOptions);
-                        }
-                      },
-                      child: Text(
-                        "تأكيد العنوان",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      style: TextButton.styleFrom(
-                        backgroundColor: Colors.orange,
+                Spacer(),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.expand(height: 50, width: 150),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextButton(
+                        onPressed: () {
+                          final form = _formKey.currentState;
+                          if (form!.validate()) {
+                            form.save();
+                            process.switchAddress(ShippingAddressModel(
+                                fullName: _nameController.text,
+                                address: _addressController.text,
+                                phoneNo: _phoneController.text));
+                            process
+                                .switchStatus(statusEnum.editingPaymentOptions);
+                          }
+                        },
+                        child: Text(
+                          "تأكيد العنوان",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.orange,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
