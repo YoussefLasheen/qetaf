@@ -10,36 +10,46 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartModel cart = Provider.of<CartModel>(context);
-    return Column(
-      children: [
-        SizedBox(
-          height: 250,
-          width: 250,
-          child: Image.asset(product.imageSource),
-        ),
-        Text(
-          product.title,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-        ),
-        Text(
-          product.price.toString()+' EGP',
-          style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              fontSize: 15,
-              color: Colors.amber),
-        ),
-        Text(
-          product.shortDescription,
-          style: const TextStyle(
-              fontWeight: FontWeight.w300, fontSize: 15, color: Colors.black38),
-        ),
-        IconButton(
-          icon: Icon(Icons.shopping_cart),
-          onPressed:(){
-            cart.add(product);
-          },
-        )
-      ],
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: 300,
+        maxHeight: 400
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 250,
+            width: 250,
+            child: Image.asset(product.imageSource),
+          ),
+          Text(
+            product.title,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                product.price.toString()+' EGP',
+                style: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 15,),
+              ),
+              IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {
+                  cart.add(product);
+                },
+              )
+            ],
+          ),
+          Text(
+            product.shortDescription,
+            style: const TextStyle(
+                fontWeight: FontWeight.w300, fontSize: 15, color: Colors.black38),
+          ),
+        ],
+      ),
     );
   }
 }
