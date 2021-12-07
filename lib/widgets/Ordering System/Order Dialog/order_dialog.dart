@@ -268,7 +268,7 @@ class SidePanel extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15)),
                     ),
-                    onPressed: () => _backwardButtonFunction(process),
+                    onPressed: () => _backwardButtonFunction(process, context),
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: FittedBox(
@@ -314,8 +314,13 @@ class SidePanel extends StatelessWidget {
         : Container();
   }
 
-  void _backwardButtonFunction(OrderingProcessModel process) {
+  void _backwardButtonFunction(OrderingProcessModel process, BuildContext context) {
     switch (process.status) {
+      case statusEnum.onProductsSection:
+      {
+        Navigator.pop(context);
+      }
+      break;
       default:
         {
           controller.animateToPage(0,
