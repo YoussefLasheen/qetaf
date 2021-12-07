@@ -9,7 +9,7 @@ class CartModel extends ChangeNotifier {
 
   double calculateTotalPrice() {
     double sum = 0;
-    products.forEach((e) => sum += e.productDetails.price);
+    products.forEach((e) => sum += (e.productDetails.price * e.quantity));
     return sum;
   }
 
