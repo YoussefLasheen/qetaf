@@ -289,9 +289,8 @@ class PaymentDetails extends StatelessWidget {
     paymentMethodEnum paymentMethod,
     OrderingProcessModel process,
   ) {
-    bool _isSelected = process.paymentMethod == paymentMethod;
     return Card(
-      color: _isSelected ? Colors.orange : Colors.white,
+      color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       child: InkWell(
         onTap: paymentMethodEnumDetails.getValue(paymentMethod)['isAvailble']
@@ -309,12 +308,11 @@ class PaymentDetails extends StatelessWidget {
                 Text(
                   paymentMethodEnumDetails.getValue(paymentMethod)['name'],
                   style: TextStyle(
-                      fontWeight:
-                          _isSelected ? FontWeight.bold : FontWeight.normal,
-                      color: _isSelected ? Colors.white : Colors.black),
+                      fontWeight: FontWeight.normal,
+                      color:Colors.black),
                 ),
                 Icon(paymentMethodEnumDetails.getValue(paymentMethod)['icon'],
-                    size: 30, color: _isSelected ? Colors.white : Colors.black),
+                    size: 30, color: Colors.black),
                 SizedBox(
                   height: 6,
                 ),
@@ -324,7 +322,7 @@ class PaymentDetails extends StatelessWidget {
                           .getValue(paymentMethod)['price']
                           .toString(),
                   style:
-                      TextStyle(color: _isSelected ? Colors.white : Colors.black),
+                      TextStyle(color:Colors.black),
                 ),
               ],
             ),
