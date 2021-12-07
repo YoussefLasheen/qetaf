@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => CartModel(products: []),
       child: MaterialApp(
+        title: 'Qetaf Honey Farms',
         theme: ThemeData(
           textTheme: GoogleFonts.cairoTextTheme(
             Theme.of(context).textTheme,
