@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/order_dialog.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/order_dialog.dart';
 
 import 'home_page.dart';
-import 'widgets/Ordering System/Cart/models/cart_model.dart';
+import 'components/order_overlay/cart/models/cart_model.dart';
 
 void main() {
   runApp(const MyApp());

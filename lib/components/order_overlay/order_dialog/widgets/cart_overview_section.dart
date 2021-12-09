@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
-import 'package:qetaf/widgets/Ordering%20System/widgets/products_list.dart';
+import 'package:qetaf/components/order_overlay/cart/models/cart_model.dart';
+import 'package:qetaf/components/order_overlay/widgets/products_list.dart';
 
 class CartOverviewSection extends StatelessWidget {
   final CartModel cart;

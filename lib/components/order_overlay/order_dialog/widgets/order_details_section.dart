@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/ordering_process_model.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/shippingaddress_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/models/ordering_process_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/models/shippingaddress_model.dart';
 
 class OrderDetailsSection extends StatelessWidget {
   const OrderDetailsSection({Key? key}) : super(key: key);

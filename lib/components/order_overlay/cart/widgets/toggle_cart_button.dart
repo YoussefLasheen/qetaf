@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qetaf/widgets/Ordering%20System/widgets/product_listing.dart';
-import 'package:qetaf/widgets/products_section/models/product.dart';
+import 'package:qetaf/components/order_overlay/widgets/product_listing.dart';
+import 'package:qetaf/components/static_sections/products_section/models/product.dart';
 
 class ToggleCartButton extends StatelessWidget {
   final void Function() toggleExpand;

@@ -1,5 +1,3 @@
-import 'package:qetaf/models/user_model.dart';
-
 class ShippingAddressModel {
   final String fullName;
   final String phoneNo;

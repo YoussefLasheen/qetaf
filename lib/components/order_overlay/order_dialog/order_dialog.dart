@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/models/ordering_process_model.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/widgets/cart_overview_section.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/widgets/order_details_section.dart';
+import 'package:qetaf/components/order_overlay/cart/models/cart_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/models/ordering_process_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/widgets/cart_overview_section.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/widgets/order_details_section.dart';
 
 class OrderDialog extends StatelessWidget {
   const OrderDialog({Key? key}) : super(key: key);

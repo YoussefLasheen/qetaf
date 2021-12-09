@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qetaf/widgets/products_section/models/product.dart';
+import 'package:qetaf/components/static_sections/products_section/models/product.dart';
 
 class CartModel extends ChangeNotifier {
   CartModel({

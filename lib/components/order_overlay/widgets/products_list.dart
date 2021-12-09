@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
-import 'package:qetaf/widgets/Ordering%20System/Order%20Dialog/order_dialog.dart';
+import 'package:qetaf/components/order_overlay/cart/models/cart_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/order_dialog.dart';
 
 import 'product_listing.dart';
 

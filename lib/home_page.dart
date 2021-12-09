@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qetaf/navigation/nav_bar.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/cart.dart';
-import 'package:qetaf/widgets/contact_section.dart';
+import 'package:qetaf/components/order_overlay/cart/cart.dart';
+import 'package:qetaf/components/static_sections/contact_section.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'widgets/Ordering System/Cart/models/cart_model.dart';
-import 'widgets/aboutus_section.dart';
-import 'widgets/products_section/products_section.dart';
-import 'widgets/welcome_section.dart';
+import 'components/order_overlay/cart/models/cart_model.dart';
+import 'components/static_sections/aboutus_section.dart';
+import 'components/static_sections/products_section/products_section.dart';
+import 'components/static_sections/welcome_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

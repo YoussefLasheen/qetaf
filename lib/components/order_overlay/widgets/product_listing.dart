@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/cart.dart';
-import 'package:qetaf/widgets/Ordering%20System/Cart/models/cart_model.dart';
-import 'package:qetaf/widgets/products_section/models/product.dart';
+import 'package:qetaf/components/order_overlay/cart/cart.dart';
+import 'package:qetaf/components/order_overlay/cart/models/cart_model.dart';
+import 'package:qetaf/components/static_sections/products_section/models/product.dart';
 
 class ProductListing extends StatelessWidget {
   final ProductListingModel product;
