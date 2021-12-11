@@ -41,12 +41,8 @@ class Indicator extends StatelessWidget {
                   Spacer(),
                 TextButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                          opaque: false,
-                          pageBuilder: (_, __, ___) => const OrderTrackerDialog()),
-                    );
+                    showDialog(
+                        context: context, builder: (_) => OrderTrackerDialog());
                   },
                   child: Text("متابعة الطلب"),
                 ),
