@@ -108,4 +108,13 @@ class OrderingProcessModel extends ChangeNotifier {
     cart.empty();
     notifyListeners();
   }
+
+  static OrderingProcessModel doneOrder(CartModel cart, deliveryMethodEnum deliveryMethod, paymentMethodEnum paymentMethod, ShippingAddressModel shippingAddress) {
+      OrderingProcessModel order = OrderingProcessModel(cart: cart);
+      order.switchStatus(statusEnum.onCompleteProductDetailsSection);
+      order.switchPaymentMethod(paymentMethod);
+      order.switchDeliveryMethod(deliveryMethod);
+      order.switchAddress(shippingAddress);
+      return order;
+   }
 }
