@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qetaf/components/order_overlay/order_dialog/models/ordering_process_model.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/widgets/order_confirmation_dialog.dart';
+import 'package:qetaf/components/order_tracker_overlay/order_tracker_dialog.dart';
 
 class NavigationButtons extends StatelessWidget {
   final PageController controller;
@@ -111,10 +113,22 @@ class NavigationButtons extends StatelessWidget {
                 ),
               );
             }else{
-            process.switchStatus(statusEnum.done);  
+              process.switchStatus(statusEnum.done);
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (_, __, ___) => OrderConfirmationDialog(process: process,)),
+              );
             }
           } else {
             process.switchStatus(statusEnum.done);
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                    opaque: false,
+                    pageBuilder: (_, __, ___) => OrderConfirmationDialog(process: process,)),
+              );
           }
         }
         break;
