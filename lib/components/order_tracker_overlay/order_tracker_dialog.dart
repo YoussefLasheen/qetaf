@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' as intl;
-import 'package:qetaf/components/order_overlay/cart/cart.dart';
 import 'package:qetaf/components/order_overlay/cart/models/cart_model.dart';
 import 'package:qetaf/components/order_overlay/order_dialog/models/ordering_process_model.dart';
 import 'package:qetaf/components/order_overlay/order_dialog/models/shippingaddress_model.dart';
-import 'package:qetaf/components/order_overlay/order_dialog/order_dialog.dart';
-import 'package:qetaf/components/order_overlay/widgets/product_listing.dart';
+import 'package:qetaf/components/order_overlay/order_dialog/widgets/side_panel.dart';
 import 'package:qetaf/components/order_overlay/widgets/products_list.dart';
 import 'package:qetaf/components/order_tracker_overlay/models/order_model.dart';
 import 'package:qetaf/components/static_sections/products_section/models/product.dart';
