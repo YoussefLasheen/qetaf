@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qetaf/components/order_tracker_overlay/order_tracker_dialog.dart';
 
 class Indicator extends StatelessWidget {
   final int activePage;
@@ -38,6 +39,17 @@ class Indicator extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          opaque: false,
+                          pageBuilder: (_, __, ___) => const OrderTrackerDialog()),
+                    );
+                  },
+                  child: Text("متابعة الطلب"),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.network('https://firebasestorage.googleapis.com/v0/b/qetaf-website.appspot.com/o/logo.png?alt=media&token=883440b9-bdb9-412e-a81f-c12cec2ae8da'),
