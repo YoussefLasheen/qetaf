@@ -32,6 +32,7 @@ class ToggleCartButton extends StatelessWidget {
                   ),
                   ProductListing(
                     product: product,
+                    isEditable: false,
                   )
                 ],
               ),

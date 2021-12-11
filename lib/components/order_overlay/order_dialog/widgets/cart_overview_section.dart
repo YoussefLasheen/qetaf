@@ -28,7 +28,7 @@ class CartOverviewSection extends StatelessWidget {
             )
           ],
         ),
-        ProductsList(cart: cart),
+        ProductsList(cart: cart, isEditable: true,),
       ],
     );
   }

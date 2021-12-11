@@ -6,7 +6,8 @@ import 'package:qetaf/components/static_sections/products_section/models/product
 
 class ProductListing extends StatelessWidget {
   final ProductListingModel product;
-  const ProductListing({Key? key, required this.product}) : super(key: key);
+  final bool isEditable;
+  const ProductListing({Key? key, required this.product, required this.isEditable}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,7 @@ class ProductListing extends StatelessWidget {
               Spacer(),
               Column(
                 children: [
+                  isEditable?
                   IconButton(
                     icon: Icon(Icons.close),
                     hoverColor: Colors.transparent,
@@ -67,7 +69,7 @@ class ProductListing extends StatelessWidget {
                     onPressed: () {
                       cart.remove(product);
                     },
-                  ),
+                  ):SizedBox(height: 40,),
                   Expanded(
                       child: FittedBox(
                         child: Text(

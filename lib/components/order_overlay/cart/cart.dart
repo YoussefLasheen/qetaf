@@ -118,7 +118,7 @@ class _CartState extends State<Cart> with SingleTickerProviderStateMixin {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                ProductsList(cart: cart),
+                                ProductsList(cart: cart, isEditable: true,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(

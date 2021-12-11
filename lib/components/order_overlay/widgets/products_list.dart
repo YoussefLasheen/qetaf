@@ -5,9 +5,10 @@ import 'package:qetaf/components/order_overlay/order_dialog/order_dialog.dart';
 import 'product_listing.dart';
 
 class ProductsList extends StatelessWidget {
+  final bool isEditable;
   const ProductsList({
     Key? key,
-    required this.cart,
+    required this.cart, required this.isEditable,
   }) : super(key: key);
 
   final CartModel cart;
@@ -19,7 +20,7 @@ class ProductsList extends StatelessWidget {
         cart.products.isEmpty
             ? const Center(child: Text("Wow so empty"))
             : Container(),
-        for (var product in cart.products) ProductListing(product: product,),
+        for (var product in cart.products) ProductListing(product: product, isEditable: isEditable),
       ],
     );
   }
