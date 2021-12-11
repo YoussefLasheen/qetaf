@@ -14,15 +14,20 @@ class Api {
   }
   
   Future<DocumentSnapshot> getDocumentById(String id) async {
-    await Firebase.initializeApp();
     return ref.doc(id).get();
   }
 
-  Future<DocumentReference> addDocument(Map data) {
+  Future<DocumentReference> addDocument(data) {
     return ref.add(data);
   }
 
-  updateDocument(Map data, String id) {
-    ref.doc(id).set(data);
+  Future<String> updateDocument(data, String id) async{
+    String response = "Success";
+    ref.doc(id).set(data).then((value) {
+      response = 'Success';
+    }).catchError((error) {
+      response = error;
+    });
+    return response;
   }
 }
