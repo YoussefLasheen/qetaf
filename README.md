@@ -1,16 +1,32 @@
-# qetaf
+# qetaf 
+#### ([qetaf.lasheen.dev](https://qetaf.lasheen.dev/#/))
 
-A new Flutter project.
+[Qetaf showcase on portfolio](https://lasheen.dev/#/projects/qetaf)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+## An ecommerce website to sell honey for a local farm located in Tanta.
+![doze mockup](https://firebasestorage.googleapis.com/v0/b/yousseflasheen-portfolio.appspot.com/o/projects_assets%2Fqetaf%2Fqetaf.png?alt=media&token=3ce2699e-4dfb-4080-bfac-ec557d812f45")
 
-A few resources to get you started if this is your first Flutter project:
+### Features
+- Custom scrolling behavior with custom appbar and syncing buttons
+- Clean and sleek design.
+- It's fully functional so you can order honey on it now.
+### License
+Unfortunatly The website's code and design are not under any licence currently.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Privacy Policy
+This app uses Firebase Firstore, a third party service.
+link: https://firebase.google.com/support/privacy
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+It collects the following information:
+
+A form that contains:
+- fullname
+- address
+- phone number
+
+It saves the data to be viewed by the merchant to complete your order.
+
+
+The user submits the data himself and no data is collected automatically.
+The user is free not make any orders.
