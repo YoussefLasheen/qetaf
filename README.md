@@ -5,7 +5,7 @@
 
 
 ## An ecommerce website to sell honey for a local farm located in Tanta.
-![doze mockup](https://firebasestorage.googleapis.com/v0/b/yousseflasheen-portfolio.appspot.com/o/projects_assets%2Fqetaf%2Fqetaf.png?alt=media&token=3ce2699e-4dfb-4080-bfac-ec557d812f45")
+![doze mockup](https://firebasestorage.googleapis.com/v0/b/yousseflasheen-portfolio.appspot.com/o/projects_assets%2Fqetaf%2Fqetaf_50.png?alt=media&token=52505301-34b4-4d77-8657-ad4d56f75ce3)
 
 ### Features
 - Custom scrolling behavior with custom appbar and syncing buttons
